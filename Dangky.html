@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký & Đăng nhập</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 30%;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-in-out;
+            text-align: left;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background: #000;
+            border: none;
+            padding: 12px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #444;
+        }
+        .forgot-password {
+            color: red;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="submit-btn" onclick="openModal('registerModal')">Đăng ký</button>
+    <button class="submit-btn" onclick="openModal('loginModal')">Đăng nhập</button>
+    
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Đăng ký</h2>
+            <form id="registerForm" class="input-group">
+                <input type="text" class="input-field" placeholder="Họ và tên" required>
+                <input type="email" class="input-field" placeholder="Email" required>
+                <input type="text" class="input-field" placeholder="Số điện thoại" required>
+                <input type="password" class="input-field" placeholder="Mật khẩu" required>
+                <button type="submit" class="submit-btn">Đăng ký</button>
+            </form>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Đăng nhập</h2>
+            <form id="loginForm" class="input-group">
+                <input type="text" class="input-field" placeholder="Tên tài khoản hoặc email" required>
+                <input type="password" class="input-field" placeholder="Mật khẩu" required>
+                <button type="submit" class="submit-btn">Đăng nhập</button>
+            </form>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            closeModal("registerModal"); 
+            openModal("loginModal"); 
+        });
+    </script>
+</body>
+</html>
